@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="test_model_view_tree" model="ir.ui.view">
+            <field name="name">test.model.view.tree</field>
+            <field name="model">test.model</field>
+            <field name="arch" type="xml">
+                <tree string="test_model_view_tree">
+                    <field name="key"/>
+                    <field name="value"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="test_model_view_form" model="ir.ui.view">
+            <field name="name">test.model.view.form</field>
+            <field name="model">test.model</field>
+            <field name="arch" type="xml">
+                <form string="test_model_view_form">
+                    <sheet>
+                        <group>
+                            <field name="key"/>
+                            <field name="value"/>
+                            <field name="description"/>
+                            <field name="create_date" readonly="1"/>
+                            <field name="write_date" readonly="1"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="test_model_filter" model="ir.ui.view">
+            <field name="name">test.model.filter</field>
+            <field name="model">test.model</field>
+            <field name="arch" type="xml">
+                <search string="Search Payslips">
+                    <field name="key"/>
+                    <field name="value"/>
+                    <field name="write_date"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="act_test_model" model="ir.actions.act_window">
+            <field name="name">Test Action</field>
+            <field name="res_model">test.model</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="test_model_view_tree"/>
+            <field name="search_view_id" ref="test_model_filter"/>
+        </record>
+
+        <menuitem id="menuitem_test_model_root" name="TestMenu" sequence="0"/>
+        <menuitem id="menuitem_test_model_sub_root" name="TestSubMenu" parent="menuitem_test_model_root"/>
+        <menuitem id="menuitem_test_model_item" name="TestItem" parent="menuitem_test_model_sub_root" action="act_test_model"/>
+
+    </data>
+</openerp>
